@@ -206,4 +206,4 @@ bot.on('messageDelete', async(message) => {
 
 
 
-bot.login('Njc0NjIwMjA2ODY1MTg2ODQ2.Xj_WQg.6SbKoe5aviXnmxTZCldiUKy9B8w');
+bot.login('Njc0NjIwMjA2ODY1MTg2ODQ2.XkKvbA.8kHzLeWsAWesh1BB7ykwBJulNrI');
