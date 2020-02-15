@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
-const bot = new Discord.Client();
+const bot = new Discord.Client({
+  disableEveryone: true
+});
 const utils = require('./global/utils');
 const ytdl = require('ytdl-core');
 const config = require('./settiings/config.json');
@@ -17,7 +19,7 @@ bot.votes = new Map(); // Vote Skip
 message.message(bot, utils, config, Discord);
 
 
-
+bot.login("Njc0NjIwMjA2ODY1MTg2ODQ2.Xkeofg.Y8PaxNXOQ8Yf6Hw-oBC-V5CYNt0")
 
 
 bot.on('message', message => {
@@ -65,7 +67,7 @@ bot.on("messageReactionAdd", (reaction, user) => {
   } else {
     member.addRole(role.id)
   }
-})
+});
 
 
 
@@ -142,7 +144,7 @@ bot.on('guildMemberAdd', member => {
 
   member.addRole(role)
 
-})
+});
 /////////////////////////////////////////////
 
 
@@ -180,7 +182,7 @@ bot.on('messageUpdate', async(oldMessage, newMessage) => {
   bot.channels.get('674073274090782740').send(logEmbed);
 
   }
-})
+});
 
 bot.on('messageDelete', async(message) => {
 
@@ -201,9 +203,6 @@ bot.on('messageDelete', async(message) => {
   
   }
 
-})
+});
 
 
-
-
-bot.login("Njc0NjIwMjA2ODY1MTg2ODQ2.XkelJg.iVDn8dPRamNVz9cZVQDeNwq65Yg");
