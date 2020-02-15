@@ -19,7 +19,7 @@ bot.votes = new Map(); // Vote Skip
 message.message(bot, utils, config, Discord);
 
 
-bot.login("Njc0NjIwMjA2ODY1MTg2ODQ2.Xkeofg.Y8PaxNXOQ8Yf6Hw-oBC-V5CYNt0")
+bot.login("Njc0NjIwMjA2ODY1MTg2ODQ2.XkepsA.4_vUtb2wIdStgssYw5xCihXcJck")
 
 
 bot.on('message', message => {
