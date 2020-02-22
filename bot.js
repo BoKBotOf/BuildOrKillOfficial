@@ -5,6 +5,7 @@ const bot = new Discord.Client({
 const utils = require('./global/utils');
 const ytdl = require('ytdl-core');
 const config = require('./settiings/config.json');
+const credentials = require('./settiings/credentials.json')
 const YouTube = require('simple-youtube-api');
 const {YouTubeAPIKey} = require('./settiings/credentials.json');
 const message = require('./handlers/message');
@@ -18,8 +19,6 @@ bot.queue = new Map() // Music Queue
 bot.votes = new Map(); // Vote Skip
 message.message(bot, utils, config, Discord);
 
-
-bot.login("Njc0NjIwMjA2ODY1MTg2ODQ2.XkepsA.4_vUtb2wIdStgssYw5xCihXcJck")
 
 
 bot.on('message', message => {
@@ -69,6 +68,25 @@ bot.on("messageReactionAdd", (reaction, user) => {
   }
 });
 
+bot.on("messageReactionRemove", (reaction, user) => {
+  if(user.bot) return;
+
+  var roleName = reaction.emoji.name;
+  var role = reaction.message.guild.roles.find(role => role.name.toLowerCase() === roleName.toLowerCase());
+  var member = reaction.message.guild.members.find(member => member.id === user.id);
+
+  if(member.roles.has(role.id))
+  {
+    member.removeRole(role.id).then(member =>{
+
+    })
+  } else {
+    member.addRole(role.id)
+  }
+});
+
+
+
 
 
 
@@ -82,6 +100,32 @@ bot.on('ready', () => {
 });
 
 
+
+setInterval(() => {
+  var request = require('request');
+  var URL = 'https://gamemonitoring.net/ru/server138201/verify';
+  request(URL, function (err, res, body) {
+    if (err) throw err;
+    var con=body.indexOf('/44')
+    var con2=con-2
+    if (con == -1){
+
+    }
+    else{
+      if(body[con2]!=">"){
+    bot.user.setActivity("онлаин "+body[con2]+body[con2+1]+body[con2+2]+body[con2+3]+body[con2+4]);
+    }
+    else{
+    bot.user.setActivity("онлаин "+body[con2+1]+body[con2+2]+body[con2+3]+body[con2+4]);
+    }
+  }
+  });
+}, 10000);
+
+
+
+///////////////////////
+/*
 setInterval(() => {
   var request = require('request');
   var URL = 'https://gamemonitoring.net/ru/server138201';
@@ -112,7 +156,7 @@ setInterval(() => {
     }
   });
 }, 10000);
-
+*/
 
 // Second monitoring
 /*
@@ -206,3 +250,8 @@ bot.on('messageDelete', async(message) => {
 });
 
 
+
+
+bot.login(credentials.token)
+ .then(console.log)
+ .catch(console.error);
